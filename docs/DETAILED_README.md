@@ -20,7 +20,7 @@ Create a **Excel Sheet** with **three tabs named exactly**:
 - **Dates:** `DD/MM/YYYY` (e.g., `15/09/2024`)
 - **Totals rule:** Prefer recorded **"Total Amount ($)"**. If missing, fallback to **Unit Price × Quantity** from `Products`.
 
-Template: `data/sample-google-sheet-template.xlsx`
+Template: `data/sample-sales-data-template.xlsx`
 
 ---
 
