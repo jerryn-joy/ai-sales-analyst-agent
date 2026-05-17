@@ -1,6 +1,6 @@
 # Nova - AI Sales Analyst Agent (n8n + Groq)
 
-A privacy-friendly AI chatbot that answers natural-language sales questions directly from your Google Sheet — no cloud data uploads, no third-party storage. Built with n8n workflows, Groq LLMs, and a clean branded chat UI.
+A privacy-friendly AI chatbot that answers natural-language sales questions directly from your Excel Sheet — no cloud data uploads, no third-party storage. Built with n8n workflows, Groq LLMs, and a clean branded chat UI.
 
 > The core idea: show how free tools and open models can analyze your own data locally. The demo uses sales data (a common use case), but the architecture adapts to any dataset or domain.
 
