@@ -6,7 +6,7 @@ This document covers the **data contract**, **local setup**, **configuration**, 
 
 ## Data Contract
 
-Create a **Google Sheet** with **three tabs named exactly**:
+Create a **Excel Sheet** with **three tabs named exactly**:
 
 ### 1) `Products`
 | Product ID | Product Name | Category | Unit Price ($) | Stock Quantity |
@@ -28,7 +28,7 @@ Template: `data/sample-google-sheet-template.xlsx`
 
 **Prerequisites**
 - n8n running locally at `http://localhost:5678`
-- Google account with Sheets API access
+- Excel account with Sheets API access
 - Groq API key
 
 **1) Import workflows**
@@ -38,12 +38,12 @@ n8n → **Import from File**
 - `workflows/generate-chart.json` — Chart sub-workflow
 
 **2) Set credentials**
-- **Google Sheets OAuth2** → connect your account
+- **Excel Sheets OAuth2** → connect your account
 - **Groq** → add API credential
 
 **3) Point to your Sheet**
 
-In all three Google Sheets nodes in the main workflow, set `documentId` to your Sheet ID (from its URL). Tabs must be named exactly: **Products**, **Customers**, **Orders**.
+In all three Excel Sheets nodes in the main workflow, set `documentId` to your Sheet ID (from its URL). Tabs must be named exactly: **Products**, **Customers**, **Orders**.
 
 **4) Activate**
 
@@ -76,7 +76,7 @@ The **Chat Trigger** node also contains the custom CSS for UI branding.
 
 ### 1) Data Ingestion
 
-Three Google Sheets nodes read the `Products`, `Customers`, and `Orders` tabs. Aggregator nodes wrap each set of rows into named arrays (`products`, `customers`, `orders`).
+Three Excel Sheets nodes read the `Products`, `Customers`, and `Orders` tabs. Aggregator nodes wrap each set of rows into named arrays (`products`, `customers`, `orders`).
 
 ### 2) Validation & Normalization (Code node)
 
@@ -116,7 +116,7 @@ The validation layer produces specific, actionable messages:
 
 Additional defensive behaviors:
 
-- Detects common error-array shapes returned by the Google Sheets API
+- Detects common error-array shapes returned by the Excel Sheets API
 - Exact header matching including symbols like `($)`
 - Fallback totals only applied when explicit totals are missing
 - Day-first date parsing (e.g., `03/01/YYYY` → January 3rd)
@@ -148,7 +148,7 @@ Additional defensive behaviors:
 
 **Chat shows but no reply**
 - Confirm the Main workflow is set to Active
-- Verify Google Sheets and Groq credentials are connected
+- Verify Excel Sheets and Groq credentials are connected
 
 **Validation errors on startup**
 - Check tab names and headers exactly — including capitalization and symbols
