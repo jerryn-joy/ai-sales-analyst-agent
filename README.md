@@ -1,36 +1,42 @@
-# 🤖 Nova — AI Data Analyst Chatbot (n8n + Groq + Google Sheets)
+# Nova - AI Sales Analyst Agent (n8n + Groq)
 
-A local, privacy-friendly chatbot that answers **sales questions** from your **Google Sheet** using **n8n** workflows, **Groq** LLMs, and a clean, branded chat UI. It validates/normalizes data, returns transparent calculations, and can render charts via **QuickChart**.
+A privacy-friendly AI chatbot that answers natural-language sales questions directly from your Google Sheet — no cloud data uploads, no third-party storage. Built with n8n workflows, Groq LLMs, and a clean branded chat UI.
 
-> The core idea: show how free tools and open models can analyze your own data locally. The demo uses sales data (a common use case), but you can adapt it to any dataset.
+> The core idea: show how free tools and open models can analyze your own data locally. The demo uses sales data (a common use case), but the architecture adapts to any dataset or domain.
 
 <p align="center">
   <img src="./assets/demo.gif" alt="Chatbot Demo">
 </p>
 
-## ✨ What it does
+---
 
-- 🧠 Natural-language Q&A over **Products**, **Customers**, and **Orders**
-- 🧼 Defensive data layer: header checks, missing/empty tab detection, day-first date parsing, numeric coercion
-- 🧾 Transparent analytics: lists **order IDs**, shows subtotals/totals, formats currency (%) with two decimals
-- 🧮 Programmatic math only: uses a calculator/tool (no hand-added sums)
-- 🧰 Composable: agent can call a **chart sub-workflow** that returns a rendered image URL
-- 🧷 Short-term memory: remembers the last few turns
-- 🎨 Clean, branded chat UI (custom CSS)
-- 🔒 Local-first: runs on your machine; you own the data
+## What it does
+
+- Natural-language Q&A over **Products**, **Customers**, and **Orders**
+- Defensive data layer: header checks, missing/empty tab detection, day-first date parsing, numeric coercion
+- Transparent analytics: lists **order IDs**, shows subtotals/totals, formats currency and percentages to two decimals
+- Programmatic math only — uses a calculator tool, no hand-computed sums
+- Composable: agent can invoke a **chart sub-workflow** that returns a rendered image URL
+- Short-term memory across the last few turns
+- Clean, branded chat UI with custom CSS
+- Local-first: runs on your machine; your data never leaves it
 
 ### Workflows
 
-- **Main AI Agent:** `AI Data Analyst Chatbot`
-- **Sub-workflow:** `Generate Chart` (invoked when the user requests a chart/graph)
+- **Main Workflow — `AI Sales Analyst Agent`:** handles the chat interface, Sheet ingestion, data validation, and agent reasoning
+- **Sub-workflow — `Generate Chart`:** invoked by the agent when the user requests a chart or when a visual clearly finalizes the answer
 
-## 🧱 Architecture
+---
 
-![Architecture](./assets/architecture.png)
+## Architecture
 
-## 💬 Usage
+<img src="./assets/architecture.png" width="700"/>
 
-Ask:
+---
+
+## Usage
+
+Ask questions like:
 
 - "Total revenue for September?"
 - "Top 5 customers by spend"
@@ -40,20 +46,16 @@ Ask:
 - "Which category brings in the most money?"
 - "Who are our top 3 customers and which cities buy the most?"
 
-The bot will:
+The agent will validate your sheet structure, compute metrics programmatically, list order IDs per segment, and generate a chart when asked or when it clearly finalizes the answer.
 
-- Validate your sheet structure
-- Compute metrics programmatically
-- List **order IDs** per month/segment
-- Generate **one chart** when asked or when it clearly finalizes the answer
-
-A ready-made Excel template is included at `data/sample-sales-data-template.xlsx` or [Google Sheet link](#)
+A ready-made template is included at `data/sample-sales-data-template.xlsx` or [Google Sheet link](#).
 
 > For detailed setup, internals, and troubleshooting, see **[docs/DETAILED_README.md](docs/DETAILED_README.md)**.
 
 ---
 
-## 🗂️ Repo Structure
+## Repo Structure
+
 ```text
 ├─ workflows/
 │  ├─ ai-data-analyst-chatbot.json    # Main n8n workflow (Chat, Sheets, Validate, Agent, Tools)
@@ -74,15 +76,20 @@ A ready-made Excel template is included at `data/sample-sales-data-template.xlsx
 └─ README.md
 ```
 
-## 🛣️ Improvements in Progress
+---
 
-- Ingest once; **store in DB** (SQL or vector DB) and update on change (better for large datasets)
-- Extend **memory** beyond short-term
-- Additional connectors and source types
+## Roadmap
 
-## 🧩 Why this project
+- Ingest once; store in a database (SQL or vector DB) and update on change — better for large datasets
+- Extend memory beyond short-term conversation context
+- Additional data source connectors
 
-- **Workflow design:** clean node graph with clear separation of concerns
-- **Robustness:** strong pre-checks, exact header enforcement, helpful errors
-- **Prompt design:** rules that enforce programmatic math, transparency, and chart discipline
-- **Dev ergonomics:** clear setup, sample data, and branding hooks
+---
+
+## What this demonstrates
+
+- Agentic workflow design with clear separation of concerns (main workflow + composable sub-workflow)
+- Robust data handling: pre-checks, exact header enforcement, helpful error messages
+- Prompt engineering for programmatic math, transparent output, and chart discipline
+- Local-first architecture as a practical privacy alternative to cloud AI tools
+- Clean developer experience: clear setup, sample data, and branding hooks
