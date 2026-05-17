@@ -48,7 +48,7 @@ Ask questions like:
 
 The agent will validate your sheet structure, compute metrics programmatically, list order IDs per segment, and generate a chart when asked or when it clearly finalizes the answer.
 
-A ready-made template is included at `data/sample-sales-data-template.xlsx` or [Google Sheet link](#).
+A ready-made template is included at `data/sample-sales-data-template.xlsx`
 
 > For detailed setup, internals, and troubleshooting, see **[docs/DETAILED_README.md](docs/DETAILED_README.md)**.
 
